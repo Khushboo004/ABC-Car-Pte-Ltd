@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="admin/admin-base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>This isS home page</title>
+</head>
+<body>
+<section>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <form th:action="@{/admin/cars/type/add}" method="post" th:object="${type}">
+                <input type="hidden" name="id"  th:field="*{id}">
+                <div class="form-group">
+                    <label for="tName">Type</label>
+                    <input type="text" class="form-control" required th:field="*{tName}" name="tName" id="tName"  placeholder="Enter name">
+
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+</section>
+</body>
+</html>

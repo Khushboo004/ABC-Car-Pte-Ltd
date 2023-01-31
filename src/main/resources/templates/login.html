@@ -1,0 +1,66 @@
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="base::layout(~{::section})">
+<section>
+	<div class="container">
+	<!-- <div th:if="${session.message}" class="container">
+<div class="alert text-center mx-3"  th:classappend="${'alert-'+session.message.type}"  role="alert">
+  <span th:text="${session.message.content}"></span>
+  </div>
+  <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+  </div> -->
+		<div class="row ">
+			<div class="col-md-6 col-lg-6 offset-md-3 " >
+				<div class="card my-5 shadow ">
+						<div class="card">
+							<div class="card-header bg-info ">
+							<div class="text-center">
+							<img class="rounded-pill mt-3" style="width: 40%" alt=""
+								th:src="@{/img/Carlogo.png}" >
+						</div>
+								<h1 class="h2  text-center text-white fw-bold ">LOGIN</h1>
+							</div>
+							<div class="card-body bg-card   h5">
+								 <form id="login-form" class="form" action="#" method="post">
+                    
+                            <div th:if="${param.error}" class=" alaer alert-danger p-2">
+                            Invalid Email and Password
+                            
+                            </div>
+                            
+                             <div th:if="${param.logout}" class=" alaer alert-success p-2">
+                            You have Been logout
+                            
+                            </div>
+                            <div class="form-group">
+                                <label for="username" class="text-white">Email:</label><br>
+                                <input type="text" name="username" id="username" class="form-control" >
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="text-white">Password:</label><br>
+                                <input type="password" name="password" id="password" class="form-control">
+                            </div>
+                            <div class="my-2 text-info"> <a>Forgot Password</a></div>
+                            <div class="form-group text-center">
+                              
+                                <input type="submit" name="submit" class="btn btn-info btn-md fs-5 " value="Login">
+                            </div>
+                            <div id="register-link" class="text-right">
+                                <a th:href="@{/register}" class="text-white">Register here</a>
+                            </div>
+                        </form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<footer  th:replace="footer::footer1"></footer>
+</section>
+
+
+
+
+
+
+

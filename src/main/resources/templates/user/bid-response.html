@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="user/user-base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Show Contacts</title>
+</head>
+<body>
+	<section>
+		<main class="ml-3 mr-5">
+
+			<div class="row">
+				<div class="col-md-6 col-lg-5 offset-md-3 bg-center">
+					<div class="card my-5 shadow text-white">
+						<div class="card">
+							<div class="card-header bg-dark border border-bottom">
+								<div class="text-center">
+									<img class="rounded-pill mt-3" style="width: 20%" alt=""
+										th:src="@{/img/CarLogo.png}">
+								</div>
+								<h1 class="h2  text-center  ">Responses</h1>
+
+
+
+								<div th:if="${session.message}"
+									th:classappend="${session.message.type}" role="alert"
+									class="p-1">
+									<p class="text-center" th:text="${session.message.content}"></p>
+									<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+								</div>
+
+							</div>
+							<div class="card-body bg-dark text-warning  h5">
+
+
+								<form th:object="${carBidding}" th:action="@{/user/car/bidding}"
+									enctype="multipart/form-data" method="post"
+									class="mt-2 px-lg-5">
+
+									<input type="hidden" id="id" th:value="${carBidding.id}" name="id" class="form-control">
+									<input type="hidden" id="bidPrice" th:value="${carBidding.bidPrice}" name="bidPrice" class="form-control">
+									<input type="hidden" id="car" th:value="${carBidding.car.id}" name="car" class="form-control">
+									<input type="hidden" id="user" th:value="${carBidding.user.id}" name="user" class="form-control">
+									
+ 
+                
+             
+          
+									
+									<div class="form-group ">
+										<label for="responses">Responses</label>
+										<div class=" d-flex">
+											<select class="form-control mr-5 " th:field="*{responses}"
+												id="responses" name="responses">
+												<option th:each="role :${responses}" th:value="${role.id}"
+													th:text="${role.response}">
+											</select>
+										</div>
+									</div>
+
+
+									<div class="container text-center">
+										<button class="btn btn-primary">Change</button>
+
+									</div>
+
+								</form>
+							</div>
+
+						</div>
+
+
+					</div>
+
+
+				</div>
+
+			</div>
+		</main>
+
+	</section>
+</body>
+</html>

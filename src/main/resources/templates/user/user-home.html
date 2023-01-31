@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="user/user-base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>This isS home page</title>
+</head>
+<body>
+	<section th:fragment="home1">
+		<div class="m-3 mb-5 pb-5" style="margin-top: 30px">
+			<div class="row">
+				<div class="col-sm-3  col-md-2 col-lg-2 ">
+					<ul class="list-group mt-1">
+						<a th:href="@{/user/user-home}"><li
+							class="list-group-item bg-light"><h4 class="text-center">Search By Make</h4></li></a>
+						<a href="" th:each="maker, iStat : ${makers}"
+							th:href="@{/user/user-home/make/{id}(id=${maker.id})}"><li
+							class="list-group-item" th:text="${maker.mName}"></li></a>
+
+					</ul>
+
+					
+					<ul class="list-group mt-4">
+						<a th:href="@{/user/user-home}"><li
+							class="list-group-item bg-light"><h4 class="text-center">Search By Countries</h4></li></a>
+						<a href="" th:each="country , iStat : ${countries}"
+							th:href="@{/user/user-home/countries/{id}(id=${country.id})}"><li
+							class="list-group-item" th:text="${country.cname}"></li></a>
+
+					</ul>
+					
+						
+
+				
+					<ul class="list-group mt-4">
+						<a th:href="@{/user/user-home}"><li
+							class="list-group-item bg-light"><h4 class="text-center">Search By Fuel</h4></li></a>
+						<a href="" th:each="f , iStat : ${fuel}"
+							th:href="@{/user/user-home/fuel/{id}(id=${f.id})}"><li
+							class="list-group-item" th:text="${f.fName}"></li></a>
+
+					</ul>
+					
+					
+					
+
+					
+					<ul class="list-group mt-4">
+						<a th:href="@{/user/user-home}"><li
+							class="list-group-item bg-light"><h4 class="text-center">Search By Type</h4></li></a>
+						<a href="" th:each="t , iStat : ${type}"
+							th:href="@{/user/user-home/type/{id}(id=${t.id})}"><li
+							class="list-group-item" th:text="${t.tName}"></li></a>
+
+					</ul>
+
+				</div>
+
+
+				<div class="col-sm-9 col-lg-9 ">
+				<div class="m-2 text-center" th:if="${session.err}">
+				<div class="alert alert-primary" role="alert"
+					th:text="${session.err}"></div>
+				<th:block th:text="${#session.removeAttribute('err')}"></th:block>
+			</div>
+					
+						<div class="row no-gutters ">
+							<div class="col-12 col-md-12 ">
+							<div class=" mr-3 cards " style="margin-top: 20px" th:each="car : ${cars}">
+								<img class="justify-align-center" height="200px" width="250px"
+									th:src="@{${'/carImages/' + car.imgShow}}">
+									<hr>
+								<div class="card-body p-4">
+								
+									<h4>Make: <span class="card-title fs-4" th:text="${car.make.mName}"></span></h4>
+									<h5>Country: <span class="card-title" th:text="${car.countries.cname}"></span></h5>
+									<h5>Model: <span th:text="${car.model}"></span></h5>
+									<h4>Price: $<span th:text="${car.price}"></span>
+									</h4>
+									
+									<a href="#"
+										th:href="@{/user/user-home/viewCar/{id}(id=${car.id})}"
+										class="btn btn-primary">View Product</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- <div class="col-sm-9 col-lg-5 ">
+
+
+					<div class="row">
+						<div class="col-sm-5">
+
+
+							<form th:action="@{/user/search}" method="get">
+
+
+
+								<div class="form-group ">
+									<label for="make">Make</label>
+									<div class=" d-flex">
+										<select class="form-control mr-5 " id="make" name="keyword">
+											<option th:each="make :${makers}" th:value="${make.id}"
+												th:text="${make.mName}">
+										</select> <input class="btn btn-outline-primary" type="submit"
+											value="Search" />
+									</div>
+								</div>
+							</form>
+
+
+							 MODEL
+							<form th:action="@{/user/search}" method="get">
+								<div class="form-group">
+									<label for="model">Model</label>
+									<div class=" d-flex">
+
+										<input type="text" class="form-control mr-2" name="keyword"
+											id="model" placeholder="Enter model"> <input
+											class="btn btn-outline-primary" type="submit" value="Search" />
+									</div>
+								</div>
+
+							</form>
+
+
+
+
+							 PRICE
+							<form th:action="@{/user/search}" method="get">
+								<div class="form-group">
+									<label for="price">Price</label>
+									<div class=" d-flex">
+										<input type="TEXT" class="form-control mr-2" name="keyword"
+											id="price" placeholder="price"> <input
+											class="btn btn-outline-primary" type="submit" value="Search" />
+									</div>
+								</div>
+							</form>
+
+
+
+
+							REGISTRATION YEAR
+							<form th:action="@{/user/search}" method="get">
+								<div class="form-group">
+									<label for="regYear">Registration Year</label>
+									<div class=" d-flex">
+										<input type="text" class="form-control mr-2" name="keyword"
+											id="regYear" placeholder="Registration Year"> <input
+											class="btn btn-outline-primary" type="submit" value="Search" />
+									</div>
+								</div>
+							</form>
+
+
+						</div>
+					</div>
+				</div>
+ -->
+
+
+			</div>
+		</div>
+	<footer class="mt-5"  th:replace="footer::footer1"></footer>
+	</section>
+</body>
+</html>

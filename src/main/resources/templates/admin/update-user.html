@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="admin/admin-base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Show Contacts</title>
+</head>
+<body>
+	<section>
+		<main class="ml-3 mr-5">
+			<!-- <div class="card">
+<div class="card-body">
+<h1 class="text-center">Register Now</h1>
+<div class="container-fluid mt-1">
+<div class="row">
+<div class="col-md-10 offset-md-1"> -->
+			<div class="row">
+				<div class="col-md-6 col-lg-5 offset-md-3 bg-center">
+					<div class="card my-5 shadow text-white">
+						<div class="card">
+							<div class="card-header bg-dark border border-bottom">
+								<div class="text-center">
+									<img class="rounded-pill mt-3" style="width: 40%" alt=""
+										th:src="@{/img/CarLogo.png}">
+								</div>
+								<h1 class="h2  text-center  ">User Update</h1>
+
+
+
+								<div th:if="${session.message}"
+									th:classappend="${session.message.type}" role="alert"
+									class="p-1">
+									<p class="text-center" th:text="${session.message.content}"></p>
+									<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+								</div>
+
+							</div>
+							<div class="card-body bg-dark text-warning  h5">
+
+
+								<form th:object="${user}" th:action="@{/admin/update-user}"
+									enctype="multipart/form-data" method="post"
+									class="mt-2 px-lg-5">
+
+									<input type="hidden" id="id" th:value="${user.id}" name="id"
+										class="form-control">
+
+									<!--  Name -->
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<div class="input-group-text mr-1">
+												<i class="fa fa-plus"></i>
+											</div>
+
+										</div>
+										<input type="text"
+											th:classappend="${#fields.hasErrors('name')?'is-invalid':''}"
+											th:value="${user.name}" class="form-control" id="name_field"
+											name="name" aria-describedby="nameHelp"
+											placeholder="Enter name">
+										<div th:each="e : ${#fields.errors('name')}" th:text="${e}"
+											id="validationServer03Feedback" class="invalid-feedback">
+										</div>
+									</div>
+
+									<!--  Email -->
+									<div class="input-group  mt-3">
+										<div class="input-group-prepend">
+											<div class="input-group-text mr-1">@</div>
+
+										</div>
+										<input type="email"
+											th:classappend="${#fields.hasErrors('email')?'is-invalid':''}"
+											name="email" th:value="${user.email}" class="form-control"
+											id="email_field" aria-describedby="emailHelp"
+											placeholder="Enter email">
+										<div th:each="e : ${#fields.errors('email')}" th:text="${e}"
+											id="validationServer03Feedback" class="invalid-feedback">
+										</div>
+									</div>
+
+									<!-- Password -->
+									<div class="input-group mt-3">
+										<div class="input-group-prepend">
+											<div class="input-group-text mr-1">
+												<i class="fa fa-key"></i>
+											</div>
+
+										</div>
+										<input type="password" name="password" class="form-control"
+											th:classappend="${#fields.hasErrors('password')?'is-invalid':''}"
+											id="password_field" aria-describedby="emailHelp"
+											th:value="${user.password}" placeholder="Enter password ">
+										<div th:each="e : ${#fields.errors('password')}"
+											th:text="${e}" id="validationServer03Feedback"
+											class="invalid-feedback"></div>
+									</div>
+
+
+
+
+									<!--  phone -->
+									<div class="input-group mt-3">
+										<div class="input-group-prepend">
+											<div class="input-group-text mr-1">
+												<i class="fa fa-phone"></i>
+											</div>
+
+										</div>
+										<input type="number" name="phone" class="form-control"
+											th:classappend="${#fields.hasErrors('phone')?'is-invalid':''}"
+											id="phone_field" aria-describedby="emailHelp"
+											th:value="${user.phone}" placeholder="Enter phone number ">
+										<div th:each="e : ${#fields.errors('phone')}" th:text="${e}"
+											id="validationServer03Feedback" class="invalid-feedback">
+										</div>
+									</div>
+
+									<div class="form-group ">
+										<label for="roles">Roles</label>
+										<div class=" d-flex">
+											<select class="form-control mr-5 " th:field="*{roles}"
+												id="roles" name="roles">
+												<option th:each="role :${roles}" th:value="${role.id}"
+													th:text="${role.name}">
+											</select>
+										</div>
+									</div>
+
+									<!-- Image -->
+
+									<div class="container">
+										<img alt="" th:src="@{'/image/'+${user.imageUrl}}"
+											th:field="*{imageUrl}" id="imgPreview4"
+											style="width: 200px; height: 200px"
+											class="border border-5 shadow-lg p-3 mb-5 bg-white rounded">
+									</div>
+									<div class="custom-file">
+										<input type="file" name="profileImage"
+											placeholder="Change Photo" id="profileImage">
+									</div>
+
+									<!-- 					                <div class="custom-file">
+                    <input type="file" th:field="*{imageUrl}"  class="custom-file-input" name="profileImage" accept="image/jpeg, image/png"  id="profileImage"/>
+                    <label class="custom-file-label" for="profileImage">Choose file</label>
+                </div>
+                <div class="form-group">
+                    <img src="#" id="imgPreview4"height="200px" width="200px" th:src="@{'/image/'+${user.imageUrl}}" 
+                    style="margin-top: 20px" alt=" ">
+                </div>
+ -->
+
+									<div class="container text-center">
+										<button class="btn btn-primary">Update</button>
+
+									</div>
+
+								</form>
+							</div>
+
+						</div>
+
+
+					</div>
+
+
+				</div>
+
+			</div>
+		</main>
+
+	</section>
+</body>
+</html>

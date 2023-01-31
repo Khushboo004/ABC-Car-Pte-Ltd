@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	>
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap CSS -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+	integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" th:href="@{/css/footer.css}">
+<title th:text=${title}>Base html!</title>
+</head>
+<body>
+
+ <footer th:fragment="footer1" class="footer mt-5" style="background-color: #1b2f3d; bottom: 0px">
+  <!-- <div class="container-fluid bg-secondary"> -->
+  <div class="container text-white">
+    <div class="row p-5">
+      <!-- Logo -->
+      <div class="col-lg-3 text-center">
+        <h2 class="logo">ABC Car<br>Pte Ltd</h2>
+        <p>@2022 ABCJobsPteLtd. AllRights Reserved</p>
+      </div>
+      <!-- Company -->
+      <div class="col-lg-3">
+        <h3>Company</h3>
+        <ul>
+          <li><a class="text-decoration-none text-white" href="">Home</a></li>
+          <li><a class="text-decoration-none text-white" href="">Blog</a></li>
+          <li><a class="text-decoration-none text-white" href="">Private Policy</a></li>
+        </ul>
+      </div>
+      <!-- Support -->
+      <div class="col-lg-3">
+        <h3>Support</h3>
+        <ul>
+          <li><a class="text-decoration-none text-white" href="">Contact Us</a></li>
+          <li><a class="text-decoration-none text-white" href=""> About Us</a></li>
+          <li>FAQ</li>
+        </ul>
+      </div>
+      <!-- Social -->
+      <div class="col-lg-3">
+        <h3>Social</h3>
+        <ul class="list-unstyled d-flex">
+          <li >
+            <a  class=" text-decoration-none text-white far" href="http://www.facebook.com"><i class='fab fa-facebook-f  rounded-circle p-2 bg-white mr-2' style='font-size:20px;color:blue'></i></i>
+            </a><a class="text-decoration-none text-white" href="http://www.twitter.com"><i class="bi bi-twitter"></i></a>
+          </li>
+          <li>
+            <a  class="text-decoration-none text-white far" href="http://www.linkedin.com"><i class="fab fa-linkedin rounded-circle p-2 bg-white" style='font-size:20px;color:blue'aria-hidden="true"></i>
+            </a><a class="text-decoration-none text-white" href="http://www.instagram.com"><i class="bi bi-instagram"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- </div> -->
+</footer>
+
+</body>
+</html>

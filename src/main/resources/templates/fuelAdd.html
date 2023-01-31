@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="admin/admin-base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>This isS home page</title>
+</head>
+<body>
+<section>
+
+<div class="container">
+<div th:if="${session.message}"
+							th:classappend="${session.message.type}" role="alert" class="p-1">
+							<p class="text-center" th:text="${session.message.content}"></p>
+							<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+						</div>
+    <div class="row">
+        <div class="col-sm-4">
+            <form th:action="@{/admin/cars/fuel/add}" method="post" th:object="${fuel}">
+                <input type="hidden" name="id"  th:field="*{id}">
+                <div class="form-group">
+                    <label for="cname">Fuel</label>
+                    <input type="text" class="form-control" required th:field="*{fName}" name="fName" id="fName"  placeholder="Enter cname">
+
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+</section>
+</body>
+</html>

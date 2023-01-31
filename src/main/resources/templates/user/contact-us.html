@@ -1,0 +1,113 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	th:replace="user/user-base::layout(~{::section})">
+
+<head>
+</head>
+<body>
+<section>
+	<div class="container mt-5">
+	<div th:if="${session.message}"
+							th:classappend="${session.message.type}" role="alert" class="p-1">
+							<p class="text-center" th:text="${session.message.content}"></p>
+							<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+						</div>
+		<div class="row">
+			<div class="col-12 text-center">
+			<h1>ANY QUESTIONS? CONTACT US NOW!</h1>
+			<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+					Tenetur deserunt eum unde, quaerat quam nihil possimus, veritatis
+					repellat sapiente quibusdam nesciunt praesentium facilis? Hic nam
+					illum eaque recusandae accusantium dolorem ducimus, quia dolorum
+					qui laborum sequi error optio sapiente, nihil commodi aliquid</p>
+			</div>
+			<div class="col-10">
+			
+
+
+
+
+					</div>
+					<div class="card-body border h5">
+					<h1 class="text-center mb-3">Message Here</h1>
+
+				<form th:object="${contact}" th:action="@{/user/contact_us}"
+					method="post" >
+
+					<!--  Name -->
+					<div class="input-group">
+						<div class="input-group-prepend">
+							<div class="input-group-text mr-1">
+								<i class="fa fa-plus"></i>
+							</div>
+
+						</div>
+						<input type="text"
+							th:classappend="${#fields.hasErrors('name')?'is-invalid':''}"
+							th:value="${contact.name}" class="form-control" id="name_field"
+							name="name" aria-describedby="nameHelp" placeholder="Enter name">
+						<div th:each="e : ${#fields.errors('name')}" th:text="${e}"
+							id="validationServer03Feedback" class="invalid-feedback"></div>
+					</div>
+
+					<!--  Email -->
+					<div class="input-group  mt-3">
+						<div class="input-group-prepend">
+							<div class="input-group-text mr-1">@</div>
+
+						</div>
+						<input type="email"
+							th:classappend="${#fields.hasErrors('email')?'is-invalid':''}"
+							name="email" th:value="${contact.email}" class="form-control"
+							id="email_field" aria-describedby="emailHelp"
+							placeholder="Enter email">
+						<div th:each="e : ${#fields.errors('email')}" th:text="${e}"
+							id="validationServer03Feedback" class="invalid-feedback"></div>
+					</div>
+
+
+					<!--  phone -->
+					<div class="input-group mt-3">
+						<div class="input-group-prepend">
+							<div class="input-group-text mr-1">
+								<i class="fa fa-phone"></i>
+							</div>
+
+						</div>
+						<input type="number" name="phone" class="form-control"
+							th:classappend="${#fields.hasErrors('phone')?'is-invalid':''}"
+							th:value="${contact.phone}" id="phone_field"
+							aria-describedby="emailHelp" placeholder="Enter phone number ">
+						<div th:each="e : ${#fields.errors('phone')}" th:text="${e}"
+							id="validationServer03Feedback" class="invalid-feedback"></div>
+					</div>
+
+					<div class="input-group  my-2">
+						<textarea  name="messages" rows="10"
+						th:classappend="${#fields.hasErrors('messages')?'is-invalid':''}"
+							th:value="${contact.messages}"  id="messages_field"
+							class="form-control" placeholder="Enter Your Message"></textarea>
+								<div th:each="e : ${#fields.errors('messages')}" th:text="${e}"
+							id="validationServer03Feedback" class="invalid-feedback"></div>
+					</div>
+					
+
+					<!-- Terms and conditions -->
+
+					<div class="container text-center">
+						<button class="btn btn-primary mt-1">Send</button>
+
+					</div>
+				
+
+				</form>
+			</div>
+		
+
+			</div>
+		</div>
+		<footer  th:replace="footer::footer1"></footer>
+</section>
+
+</body>
+</html>

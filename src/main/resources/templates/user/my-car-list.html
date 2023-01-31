@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="user/user-base::layout(~{::section})">
+<section>
+	<div class=" m-5 p-4">
+
+
+		<div th:if="${session.message}"
+			th:classappend="${session.message.type}" role="alert">
+			<p class="text-center" th:text="${session.message.content}"></p>
+			<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+		</div>
+		<div class="text-right">
+				<a class="btn-primary btn-lg text-decoration-none" th:href="@{/user/show-bidding}">Bidding</a>
+		
+		<a class="btn-primary btn-lg text-decoration-none" th:href="@{/user/show-requests}">Drive Requests</a>
+		</div>
+
+
+		<h1 class="text-center">My-Cars</h1>
+
+		<table class="table table-hover table-bordered text-center">
+			<thead class="thead-light fs-4 bg-warning">
+				<tr>
+					<th scope="col">SN</th>
+
+					<th scope="col">Car Image</th>
+					<th scope="col">Make</th>
+					<th scope="col">Model</th>
+					<th scope="col">Type</th>
+					<th scope="col">Fuel</th>
+					<th scope="col">Status</th>
+					<th scope="col">Action</th>
+
+
+				</tr>
+			</thead>
+			<tbody class="fs-5 fw-bold">
+				<tr th:each="c, iStat : ${cars}">
+					<th scope="row" th:text="${iStat.index + 1}">1</th>
+					<td><img class=" rounded-pill my_car"
+						th:src="@{'/carImages/'+${c.imgShow}}" alt="Profile Photo Display">
+
+					</td>
+					<td><span  th:text="${c.make.mName}"></span></td>
+					<td><span th:text="${c.model}"></span></td>
+					<td th:text="${c.type.tName}"></td>
+
+					<td th:text="${c.fuel.fName}"></td>
+					<td >
+					 <a th:text="${c.status}"
+						th:href="@{'/user/car/activation/'+${c.id}}"
+						class="btn btn-primary btn-sm mr-2">change</a>
+					
+					</td>
+					
+					<td><a th:onclick="|deleteCar(${c.id})|"
+						class="btn btn-danger btn-sm mr-2">Delete</a> <a
+						th:href="@{'/user/cars/update-car/'+${c.id}}"
+						class="btn btn-primary btn-sm mr-2">update</a> <a
+						th:href="@{/user/user-home/viewCar/{id}(id=${c.id})}"
+						class="btn btn-primary btn-sm mr-2">View Car Details</a></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div></div>
+
+
+
+
+	</div>
+	<script type="text/javascript">
+
+
+</script>
+</section>
+</body>
+</html>

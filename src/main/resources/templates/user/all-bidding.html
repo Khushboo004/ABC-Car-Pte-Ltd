@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="user/user-base::layout(~{::section})">
+<section>
+	<div class="container">
+
+
+		<div th:if="${session.message}"
+			th:classappend="${session.message.type}" role="alert">
+			<p class="text-center" th:text="${session.message.content}"></p>
+			<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+		</div>
+
+		<h1 class="text-center">Car Bidding</h1>
+
+		<table class="table table-hover table-bordered text-center">
+			<thead class="thead-light fs-6 bg-warning">
+				<tr>
+					<th scope="col">SN</th>
+					<th scope="col">Image</th>
+
+					<th scope="col">Name</th>
+					<th scope="col">Email</th>
+					<th scope="col" class="text-info">Bid Price</th>
+					<th scope="col">Model</th>
+					<th scope="col">Response</th>
+
+
+
+
+				</tr>
+			</thead>
+			<tbody class="fs-6 fw-bold">
+				<tr th:each="cb, iStat : ${carBiddings}">
+					<th scope="row" th:text="${iStat.index + 1}">1</th>
+					<td><img class=" rounded-pill my_car"
+						th:src="@{'/carImages/'+${cb.car.imgShow}}"
+						alt="Profile Photo Display"></td>
+					<td th:text="${cb.user.name}"></td>
+					<td th:text="${cb.user.email}"></td>
+					<td  class="text-info"><span th:text="${cb.bidPrice}"></span></td>
+					<td th:text="${cb.car.model}"></td>
+					<td>
+					<a th:text="${cb.responses}"
+						th:href="@{'/user/car/bidding/'+${cb.id}}"
+						class="btn btn-primary btn-sm mr-2">change</a>
+					
+					
+					
+					</td>
+					
+
+				</tr>
+			</tbody>
+		</table>
+
+		<div></div>
+
+
+
+
+	</div>
+	<script type="text/javascript">
+
+
+</script>
+</section>
+</body>
+</html>

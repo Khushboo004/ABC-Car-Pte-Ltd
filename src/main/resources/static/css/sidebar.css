@@ -1,0 +1,99 @@
+/* .sidebar{
+	width:16%;
+	background: #1e1e1e;;
+	height:100%;
+	position: fixed;
+
+}
+
+.sidebar a{
+	display: block;
+	width: 100%;
+	padding: 15px 30px;
+	text-decoration: none;
+	  color: white;
+	 border-top: 1px solid rgba(255,255,255,.1);
+    border-bottom: 1px solid black;
+    border-left: 5px solid transparent;
+   
+}
+
+.sidebar a:hover{
+	color: #B93632;
+    border-left:5px solid #B93632 ;
+     border-right:5px solid #B93632 ;
+     background: #1B1B1B;
+}
+.sidebar .divider{
+	height: .5px;
+	width: 100%;
+	background: #e2e2e2;
+	margin-top:10px;
+	
+}
+.sidebar .active {
+    color: #B93632;
+    border-left:5px solid #B93632 ;
+    background: #1B1B1B;
+}
+
+
+.content{
+	margin-left: 16%;
+	
+}
+
+@media only screen and (max-width: 800px) {
+	.sidebar {
+	display: none;
+	width: 25% !important;
+	
+}
+.content{
+	margin-left: 0%!important;
+	
+}
+	
+	
+}
+
+@media only screen and (max-width: 600px) {
+	.sidebar {
+	width: 28% !important;
+	
+}
+.sidebar a{
+	margin-top: 25px;
+
+	}
+.content{
+	margin-left: 0%!important;
+	
+}
+	
+	
+}
+
+
+
+.sidebar .crossBtn{
+	
+	position: absolute;
+	top: 0;
+	right: 35px;
+	font-size: 35px;
+	cursor:pointer;
+	
+}
+
+.my_profile{
+	width: 50px;
+	height: 50px;
+	object-fit: cover;
+	border: 1px solid black;
+}
+
+
+
+
+ */

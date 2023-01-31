@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="admin/admin-base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>This isS home page</title>
+</head>
+<body>
+<section>
+
+<div class="container">
+<div  th:if="${session.message}" th:classappend="${session.message.type}" role="alert">
+							<p class="text-center" th:text="${session.message.content}"></p>
+							<th:block th:text="${#session.removeAttribute('message')}" ></th:block>
+	
+	</div>						</div>
+<div class="container">
+    <a th:href="@{/admin/cars/maker/add}" style="margin: 20px 0" class="btn btn-primary">Add Maker</a>
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">SN</th>
+            <th scope="col">Category Name</th>
+            <th scope="col">Delete</th>
+            <th scope="col">Update</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="m, iStat : ${makers}">
+            <th scope="row" th:text="${iStat.index + 1}">1</th>
+            <td th:text="${m.mName}">Larry</td>
+
+            <td><a href="" th:href="@{/admin/cars/maker/delete/{id}(id=${m.id})}" onclick="return confirm('Are You sure?')" class="btn btn-danger">Delete</a></td>
+            <td><a href="" th:href="@{/admin/cars/maker/update/{id}(id=${m.id})}" class="btn btn-warning">Update</a></td>
+
+        </tr>
+        </tbody>
+    </table>
+    <!-- pagination --> 
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li th:if="${currentPage !=0}" class="page-item">
+      <a class="page-link" th:href="@{'/admin/cars/maker/'+${currentPage-1}}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+    <li th:classappend="${currentPage==i-1?'active':''}" 
+    th:each="i : ${#numbers.sequence(1,totalPages)}" 
+    class="page-item">
+    <a class="page-link" th:href="@{'/admin/cars/maker/'+${i-1}}" >
+    <span th:text="${i}"></span>
+    </a></li>
+    <li th:if="${currentPage+1 !=totalPages}" class="page-item">
+      <a class="page-link" th:href="@{'/admin/cars/maker/'+${currentPage+1}}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+</div>
+<hr class="bg-warning">
+
+
+
+
+
+<div class="container">
+
+<a th:href="@{/admin/cars/year/add}" style="margin: 20px 0" class="btn btn-secondary">Add Year</a>
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">SN</th>
+            <th scope="col">Category Name</th>
+            <th scope="col">Delete</th>
+            <th scope="col">Update</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="m, iStat : ${years}">
+            <th scope="row" th:text="${iStat.index + 1}">1</th>
+            <td th:text="${m.year}">Larry</td>
+
+          <td><a href="" th:href="@{/admin/cars/year/delete/{id}(id=${m.id})}" onclick="return confirm('Are You sure?')" class="btn btn-danger">Delete</a></td>
+            <td><a href="" th:href="@{/admin/cars/year/update/{id}(id=${m.id})}" class="btn btn-warning">Update</a></td>
+
+
+        </tr>
+        </tbody>
+    </table>
+     <!-- pagination --> 
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li th:if="${currentPage !=0}" class="page-item">
+      <a class="page-link" th:href="@{'/admin/cars/maker/'+${currentPage-1}}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+    <li th:classappend="${currentPage==i-1?'active':''}" 
+    th:each="i : ${#numbers.sequence(1,totalPages)}" 
+    class="page-item">
+    <a class="page-link" th:href="@{'/admin/cars/maker/'+${i-1}}" >
+    <span th:text="${i}"></span>
+    </a></li>
+    <li th:if="${currentPage+1 !=totalPages}" class="page-item">
+      <a class="page-link" th:href="@{'/admin/cars/maker/'+${currentPage+1}}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+
+</div>
+<hr class="bg-warning">
+<div class="container">
+
+
+
+
+
+
+
+
+
+
+<a th:href="@{/admin/cars/countries/add}" style="margin: 20px 0" class="btn btn-danger">Add Countries</a>
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">SN</th>
+            <th scope="col">Category Name</th>
+            <th scope="col">Delete</th>
+            <th scope="col">Update</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="m, iStat : ${countries}">
+            <th scope="row" th:text="${iStat.index + 1}">1</th>
+            <td th:text="${m.cname}">Larry</td>
+
+           <td><a href="" th:href="@{/admin/cars/countries/delete/{id}(id=${m.id})}" onclick="return confirm('Are You sure?')" class="btn btn-danger">Delete</a></td>
+            <td><a href="" th:href="@{/admin/cars/countries/update/{id}(id=${m.id})}" class="btn btn-warning">Update</a></td>
+
+        </tr>
+        </tbody>
+    </table>
+      <!-- pagination --> 
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li th:if="${currentPage !=0}" class="page-item">
+      <a class="page-link" th:href="@{'/admin/cars/maker/'+${currentPage-1}}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+    <li th:classappend="${currentPage==i-1?'active':''}" 
+    th:each="i : ${#numbers.sequence(1,totalPages)}" 
+    class="page-item">
+    <a class="page-link" th:href="@{'/admin/cars/maker/'+${i-1}}" >
+    <span th:text="${i}"></span>
+    </a></li>
+    <li th:if="${currentPage+1 !=totalPages}" class="page-item">
+      <a class="page-link" th:href="@{'/admin/cars/maker/'+${currentPage+1}}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+
+</div>
+<hr class="bg-warning">
+<div class="container">
+
+
+<a th:href="@{/admin/cars/fuel/add}" style="margin: 20px 0" class="btn btn-warning">Add Fuel</a>
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">SN</th>
+            <th scope="col">Category Name</th>
+            <th scope="col">Delete</th>
+            <th scope="col">Update</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="m, iStat : ${fuels}">
+            <th scope="row" th:text="${iStat.index + 1}">1</th>
+            <td th:text="${m.fName}">Larry</td>
+
+          <td><a href="" th:href="@{/admin/cars/fuel/delete/{id}(id=${m.id})}" onclick="return confirm('Are You sure?')" class="btn btn-danger">Delete</a></td>
+            <td><a href="" th:href="@{/admin/cars/fuel/update/{id}(id=${m.id})}" class="btn btn-warning">Update</a></td>
+
+
+        </tr>
+        </tbody>
+    </table>
+     <!-- pagination --> 
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li th:if="${currentPage !=0}" class="page-item">
+      <a class="page-link" th:href="@{'/admin/cars/maker/'+${currentPage-1}}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+    <li th:classappend="${currentPage==i-1?'active':''}" 
+    th:each="i : ${#numbers.sequence(1,totalPages)}" 
+    class="page-item">
+    <a class="page-link" th:href="@{'/admin/cars/maker/'+${i-1}}" >
+    <span th:text="${i}"></span>
+    </a></li>
+    <li th:if="${currentPage+1 !=totalPages}" class="page-item">
+      <a class="page-link" th:href="@{'/admin/cars/maker/'+${currentPage+1}}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+
+</div>
+<hr class="bg-warning">
+<div class="container">
+<a th:href="@{/admin/cars/type/add}" style="margin: 20px 0" class="btn btn-info">Add Type</a>
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">SN</th>
+            <th scope="col">Category Name</th>
+            <th scope="col">Delete</th>
+            <th scope="col">Update</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="m, iStat : ${types}">
+            <th scope="row" th:text="${iStat.index + 1}">1</th>
+            <td th:text="${m.tName}">Larry</td>
+
+          <td><a href="" th:href="@{/admin/cars/type/delete/{id}(id=${m.id})}" onclick="return confirm('Are You sure?')" class="btn btn-danger">Delete</a></td>
+            <td><a href="" th:href="@{/admin/cars/type/update/{id}(id=${m.id})}" class="btn btn-warning">Update</a></td>
+
+
+        </tr>
+        </tbody>
+    </table>
+     <!-- pagination --> 
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li th:if="${currentPage !=0}" class="page-item">
+      <a class="page-link" th:href="@{'/admin/cars/maker/'+${currentPage-1}}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+    <li th:classappend="${currentPage==i-1?'active':''}" 
+    th:each="i : ${#numbers.sequence(1,totalPages)}" 
+    class="page-item">
+    <a class="page-link" th:href="@{'/admin/cars/maker/'+${i-1}}" >
+    <span th:text="${i}"></span>
+    </a></li>
+    <li th:if="${currentPage+1 !=totalPages}" class="page-item">
+      <a class="page-link" th:href="@{'/admin/cars/maker/'+${currentPage+1}}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+
+
+
+
+
+</div>
+</section>
+</body>
+</html>

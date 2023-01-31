@@ -1,0 +1,197 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="user/user-base::layout(~{::section})">
+<section>
+<main class="ml-3 mr-5">
+	<div class="row">
+		<div class="col-md-6 col-lg-5 offset-md-3 bg-center">
+			<div class="card my-5 shadow text-white">
+				<div class="card">
+					<div class="card-header bg-dark border border-bottom">
+						<div class="text-center">
+							<img class="rounded-pill mt-3" style="width: 40%" alt=""
+								th:src="@{/img/CarLogo.png}">
+						</div>
+						<h1 class="h2  text-center  ">Test Drive Request Form</h1>
+						
+
+						<div th:if="${session.message}"
+							th:classappend="${session.message.type}" role="alert" class="p-1">
+							<p class="text-center" th:text="${session.message.content}"></p>
+							<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+						</div>
+
+					</div>
+					<div class="card-body bg-dark text-light  h5">
+
+
+						<form th:object="${testDriveDTO}" th:action="@{/user/test_drive_request}"
+							enctype="multipart/form-data" method="post" class="mt-2 px-lg-5">
+
+						                <input type="hidden" name="id" th:field="*{id}">
+
+							<!--  First Name -->
+							<h6 class="mt-3">First Name</h6>
+							<div class="input-group">
+					
+							
+								<div class="input-group-prepend">
+					
+									<div class="input-group-text mr-1">
+										<i class="fa fa-plus"></i>
+									</div>
+
+								</div>
+								
+								<input type="text"
+									th:classappend="${#fields.hasErrors('firstName')?'is-invalid':''}"
+									th:value="${testDriveDTO.firstName}" class="form-control" id="firstName_field"
+									name="firstName" aria-describedby="firstNameHelp" required="required"
+									placeholder="Enter First Name">
+								<div th:each="e : ${#fields.errors('firstName')}" th:text="${e}"
+									id="validationServer03Feedback" class="invalid-feedback">
+								</div>
+							</div>
+							
+							
+							<!-- Last Name -->
+							<h6 class="mt-3">Last Name</h6>
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<div class="input-group-text mr-1">
+										<i class="fa fa-plus"></i>
+									</div>
+
+								</div>
+								<input type="text"
+									th:classappend="${#fields.hasErrors('lastName')?'is-invalid':''}"
+									th:value="${testDriveDTO.lastName}" class="form-control" id="lastName_field"
+									name="lastName" aria-describedby="lastNameHelp" required="required"
+									placeholder="Enter Last Name">
+								<div th:each="e : ${#fields.errors('lastName')}" th:text="${e}"
+									id="validationServer03Feedback" class="invalid-feedback">
+								</div>
+							</div>
+
+							<!--  Email -->
+							<h6 class="mt-3">Email</h6>
+							<div class="input-group  mt-3">
+								<div class="input-group-prepend">
+									<div class="input-group-text mr-1">@</div>
+
+								</div>
+								<input type="email"
+									th:classappend="${#fields.hasErrors('email')?'is-invalid':''}"
+									name="email" th:value="${testDriveDTO.email}" class="form-control"
+									id="email_field" aria-describedby="emailHelp" required="required"
+									placeholder="Enter email">
+								<div th:each="e : ${#fields.errors('email')}" th:text="${e}"
+									id="validationServer03Feedback" class="invalid-feedback">
+								</div>
+							</div>
+
+							
+
+
+							<!--  Phone -->
+								<h6 class="mt-3">Phone</h6>
+							<div class="input-group mt-3">
+								<div class="input-group-prepend">
+									<div class="input-group-text mr-1">
+										<i class="fa fa-phone"></i>
+									</div>
+
+								</div>
+								<input type="number" name="phone" class="form-control"
+									th:classappend="${#fields.hasErrors('phone')?'is-invalid':''}"
+									id="phone_field" aria-describedby="phoneHelp"
+									th:value="${testDriveDTO.phone}" required="required"
+									placeholder="Enter phone number ">
+								<div th:each="e : ${#fields.errors('phone')}" th:text="${e}"
+									id="validationServer03Feedback" class="invalid-feedback">
+								</div>
+							</div>
+							
+							<!-- Post code -->
+							
+									<h6 class="mt-3">Post code</h6>
+							<div class="input-group">
+					
+								
+								<input type="number"
+									th:classappend="${#fields.hasErrors('postcode')?'is-invalid':''}"
+									th:value="${testDriveDTO.postcode}" class="form-control" id="postcodefield"
+									name="postcode" aria-describedby="postcodeHelp" required="required"
+									placeholder="EnterPostcode">
+								<div th:each="e : ${#fields.errors('postcode')}" th:text="${e}"
+									id="validationServer03Feedback" class="invalid-feedback">
+								</div>
+							</div>
+
+								<!-- Preferred Date  -->
+								
+								<div class="form-group">
+									<h6 class="mt-3">Preferred Date</h6> <input
+										type="date" name="preferredDate" class="form-control"
+										th:classappend="${#fields.hasErrors('preferredDate')?'is-invalid':''}"
+										id="phone_field" aria-describedby="emailHelp" required="required"
+										th:value="${testDriveDTO.preferredDate}"
+										placeholder="Enter phone number ">
+									<div th:each="e : ${#fields.errors('preferredDate')}" th:text="${e}"
+										id="validationServer03Feedback" class="invalid-feedback">
+									</div>
+								</div>
+								
+								
+								
+	
+								
+								<!-- Model  -->
+							 <div class="form-group ">
+                    <h6 class="mt-3">Model</h6>
+                    <div ><select class="form-control mr-5 " th:field="*{carId}" id="car" name="car" >
+                        <option th:each="car :${cars}"
+                                th:value="${car.id}"
+                                th:text="${car.model}"
+                        >
+                    </select>
+           </div>
+                </div>
+
+								<!-- Terms and conditions -->
+								<h6 class="mt-3">Comments</h6>
+							<div class="input-group  my-2">
+							
+						<textarea  name="comments" rows="5"
+						th:classappend="${#fields.hasErrors('comments')?'is-invalid':''}" required="required"
+							th:value="${testDriveDTO.comments}"  id="messages_field"
+							class="form-control" placeholder="Enter Your comments"></textarea>
+								<div th:each="e : ${#fields.errors('comments')}" th:text="${e}" 
+							id="validationServer03Feedback" class="invalid-feedback"></div>
+					</div>
+					
+
+
+
+							<div class="container text-center">
+								<button class="btn btn-primary">Register</button>
+
+							</div>
+
+						</form>
+					</div>
+
+				</div>
+
+
+			</div>
+
+
+		</div>
+
+	</div>
+	</main>
+	<footer  th:replace="footer::footer1"></footer>
+</section>
+
+</body>
+</html>

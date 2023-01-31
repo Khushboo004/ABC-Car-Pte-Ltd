@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})"
+>
+<head>
+<meta charset="ISO-8859-1">
+<title>This isS home page</title>
+</head>
+<body>
+<section class="">
+<section class=" ">
+<main class="banner d-flex align-items-center">
+
+<div class="row ">
+			<div class="col-lg-7 pb-2 mx-3">
+			<div class="text-center">
+<h1>ABC CAR PTE LTD</h1>
+<p>Start Collecting your contacts in very smarter way. We provide very efficient and smarter way of handling contacts.
+</p>
+<a th:href="@{/login}"  class="btn bg-primary btn-lg text-white">Get Started</a>
+</div>
+</div>
+<div class="col-lg-4 ">
+</div>
+</div>
+</main>
+
+		<div class=" mb-5 p-3 bg-light" >
+			<div class="row mx-lg-5">
+				<div class="col-sm-12 col-lg-2 ">
+					<ul class="list-group mt-1">
+						<a th:href="@{/home}"><li
+							class="list-group-item bg-light"><h4 class="text-center">Search By Make</h4></li></a>
+						<a href="" th:each="maker, iStat : ${makers}"
+							th:href="@{/home/make/{id}(id=${maker.id})}"><li
+							class="list-group-item" th:text="${maker.mName}"></li></a>
+
+					</ul>
+
+					
+					<ul class="list-group mt-4">
+						<a th:href="@{/home}"><li
+							class="list-group-item bg-light"><h4 class="text-center">Search By Countries</h4></li></a>
+						<a href="" th:each="country , iStat : ${countries}"
+							th:href="@{/home/countries/{id}(id=${country.id})}"><li
+							class="list-group-item" th:text="${country.cname}"></li></a>
+
+					</ul>
+					
+						
+
+				
+					<ul class="list-group mt-4">
+						<a th:href="@{/home}"><li
+							class="list-group-item bg-light"><h4 class="text-center">Search By Fuel</h4></li></a>
+						<a href="" th:each="f , iStat : ${fuel}"
+							th:href="@{/home/fuel/{id}(id=${f.id})}"><li
+							class="list-group-item" th:text="${f.fName}"></li></a>
+
+					</ul>
+					
+					
+					
+
+					
+					<ul class="list-group mt-4">
+						<a th:href="@{/home}"><li
+							class="list-group-item bg-light"><h4 class="text-center">Search By Type</h4></li></a>
+						<a href="" th:each="t , iStat : ${type}"
+							th:href="@{/home/type/{id}(id=${t.id})}"><li
+							class="list-group-item" th:text="${t.tName}"></li></a>
+
+					</ul>
+
+				</div>
+
+<div class="col-sm-9 col-lg-9 ">
+				<div class="m-2 text-center" th:if="${session.err}">
+				<div class="alert alert-primary" role="alert"
+					th:text="${session.err}"></div>
+				<th:block th:text="${#session.removeAttribute('err')}"></th:block>
+			</div>
+					
+						<div class="row no-gutters ">
+							<div class="col-12 col-md-12 ">
+							<div class=" mr-3 cards p-4" style="margin-top: 20px" th:each="car : ${cars}">
+								<img class="" height="200px" width="250px"
+									th:src="@{${'/carImages/' + car.imgShow}}">
+								<div class="card-body">
+									<h4>Make: <span class="card-title fs-4" th:text="${car.make.mName}"></span></h4>
+									<h5>Country: <span class="card-title" th:text="${car.countries.cname}"></span></h5>
+									<h5>Model: <span th:text="${car.model}"></span></h5>
+									<h4>Price: $<span th:text="${car.price}"></span>
+									</h4>
+									
+									<a href="#"
+										th:href="@{/home/viewCar/{id}(id=${car.id})}"
+										class="btn btn-primary">View Product</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+<footer  th:replace="footer::footer1"></footer>
+</section>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="user/user-base::layout(~{::section})">
+
+<section>
+
+<div class="container">
+<div class="row">
+				<div class="col-md-8 offset-md-2 mt-3 ">
+					<div class="card p-5 bg-light">
+					
+						<div  th:if="${session.message}" th:classappend="${session.message.type}" role="alert">
+							<p class="text-center" th:text="${session.message.content}"></p>
+							<th:block th:text="${#session.removeAttribute('message')}" ></th:block>
+							</div>
+    <h3 class="text-center fw-bold">Add a new Car Details</h3>
+    <hr>
+    
+    <form th:action="@{/user/cars/update-car}" method="post" th:object="${carDTO}" enctype="multipart/form-data">
+            <div class="col-sm-5">
+                <input type="hidden" name="id" th:field="*{id}">
+
+                <div class="form-group">
+                  
+                    
+                           
+                           
+                           <!-- MAKER -->
+                </div>
+                <div class="form-group ">
+                    <label for="make">Make</label>
+                    <div class=" d-flex"><select class="form-control mr-5 " th:field="*{makeId}" id="make" name="make">
+                        <option th:each="make :${makers}"
+                                th:value="${make.id}"
+                                th:text="${make.mName}"
+                        >
+                    </select>
+                    <a class="btn btn-primary btn-sm ">Add Maker</a></div>
+                </div>
+                
+                
+                <!--  MODEL -->
+                <div class="form-group">
+                    <label for="model">Model</label>
+                    
+                    <input type="text" class="form-control" required th:field="*{model}" name="model" id="model"
+                           placeholder="Enter model"> 
+                </div>
+                
+                
+                 <!-- YEAR -->
+                 </div>
+                     <div class="form-group ">
+                    <label for="year">Year</label>
+                    <div class=" d-flex">
+                    <select class="form-control mr-5" th:field="*{yearId}" id="year" name="year" >
+                        <option th:each="year :${year}"
+                                th:value="${year.id}"
+                                th:text="${year.year}" >
+                    </select>
+                    <a class="btn btn-primary btn-sm">Add Year</a>
+                    </div>
+                </div>
+                
+                <!--  COUNTRIES   -->              
+                     <div class="form-group">
+                    <label for="countriesl">Countries</label>
+                    
+                    <select class="form-control" th:field="*{countriesId}" id="countries" name="countriesl">
+                        <option th:each="countries :${countries}"
+                                th:value="${countries.id}"
+                                th:text="${countries.cname}" >
+                    </select>
+                    
+               </div>
+                <!-- TYPE -->
+        
+                       <div class="form-group ">
+                    <label for="type">Type</label>
+                    <div class=" d-flex"><select class="form-control mr-5 " th:field="*{typeId}" id="type" name="type">
+                        <option th:each="t :${types}"
+                                th:value="${t.id}"
+                                th:text="${t.tName}"
+                        >
+                    </select>
+                </div>
+                
+                 <!-- FUEL -->
+              
+            
+                <div class="form-group ">
+                    <label for="fuel">FUEL</label>
+                    <div class=" d-flex"><select class="form-control mr-5 " th:field="*{fuelId}" id="fuel" name="fuel">
+                        <option th:each="t :${fuels}"
+                                th:value="${t.id}"
+                                th:text="${t.fName}"
+                        >
+                    </select>
+                </div>
+                
+                <!--  PRICE -->
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <input type="number" class="form-control" required th:field="*{price}" name="price" id="price" placeholder="price">
+                </div>
+                
+                 <!-- MILEAGE -->
+                 <div class="form-group">
+                    <label for="mileage">Mileage</label>
+                    <input type="number" class="form-control" required th:field="*{mileage}" name="mileage" id="mileage" placeholder="Mileage">
+                </div>
+                
+                <!--  CC -->
+                 <div class="form-group">
+                    <label for="cc">CC</label>
+                    <input type="number" class="form-control" required th:field="*{cc}" name="cc" id="cc" placeholder="CC">
+                </div>
+              
+                
+                <!--  COLOR -->
+                  <div class="form-group">
+                    <label for="color">Color</label>
+                    <input type="text" class="form-control" required th:field="*{color}" name="color" id="color" placeholder="Color">
+                </div>
+                
+                 <!-- REGISTRATION YEAR -->
+                 <div class="form-group">
+                    <label for="regYear">Registration Year</label>
+                    <input type="date" class="form-control" required th:field="*{regYear}" name="regYear" id="regYear" placeholder="Registration Year">
+                </div>
+                
+                <!--  DESCRIPTION -->
+                <div class="form-group">
+                    <label for="description">Car Description</label>
+                    <textarea class="form-control" rows="5" th:field="*{description}" name="description" id="description"></textarea>
+                </div>
+            </div>
+            
+             <!-- FRONT IMAGE -->
+            <div class="col-sm-5">
+                <p>FRONT IMAGE</p>
+                <div class="custom-file">
+                    <input type="file"  class="custom-file-input" name="carImage" accept="image/jpeg, image/png"  id="carImage"/>
+                    <label class="custom-file-label" for="carImage">Choose file</label>
+                </div>
+                <div class="form-group">
+                    <img src="#" id="imgPreview" th:field="*{imgShow" height="100px" width="100px" th:src="@{${'/carImages/' + carDTO.imgShow}}" style="margin-top: 20px" alt=" ">
+                </div>
+                <input type="hidden" name="imgShow" th:value="${carDTO.imgShow}">
+              
+            </div>
+            
+            
+             <!-- FIRST IMAGE -->
+                    <div class="col-sm-5">
+                <p>FIRST IMAGE</p>
+                <div class="custom-file">
+                    <input type="file"  class="custom-file-input" name="carImage1" accept="image/jpeg, image/png"  id="carImage1"/>
+                    <label class="custom-file-label" for="carImage1">Choose file</label>
+                </div>
+                <div class="form-group">
+                    <img src="#" id="imgPreview1" height="100px" th:field="*{img1}" width="100px" th:src="@{${'/carImages/' + carDTO.img1}}" style="margin-top: 20px" alt=" ">
+                </div>
+                <input type="hidden" name="img1" th:value="${carDTO.img1}">
+               
+            </div>
+            
+            
+             <!--  SECOND IMAGE -->
+                    <div class="col-sm-5">
+                <p>SECOND IMAGE</p>
+                <div class="custom-file">
+                    <input type="file"  class="custom-file-input" name="carImage2" accept="image/jpeg, image/png"  id="carImage2"/>
+                    <label class="custom-file-label" for="carImage2">Choose file</label>
+                </div>
+                <div class="form-group">
+                    <img src="#" id="imgPreview2" height="100px" th:field="*{img2}" width="100px" th:src="@{${'/carImages/' + carDTO.img2}}" style="margin-top: 20px" alt=" ">
+                </div>
+                <input type="hidden" name="img2" th:value="${carDTO.img2}">
+            
+            </div>
+            
+              <!-- THIRED IMAGE  -->           
+                    <div class="col-sm-5">
+                <p>THIRED IMAGE</p>
+                <div class="custom-file">
+                    <input type="file"  class="custom-file-input" name="carImage3" accept="image/jpeg, image/png"  id="carImage3"/>
+                    <label class="custom-file-label" for="carImage3">Choose file</label>
+                </div>
+                <div class="form-group">
+                    <img src="#" id="imgPreview3" height="200px" th:field="*{img3}" width="200px" th:src="@{${'/carImages/' + carDTO.img3}}" style="margin-top: 20px" alt=" ji">
+                </div>
+                <input type="hidden" name="img3" th:value="${carDTO.img3}">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            
+        </div>
+    </form>
+    </div>
+    </div>
+    </div>
+</div>
+	<footer  th:replace="footer::footer1"></footer>
+
+</section>
+</body>
+</html> 
+

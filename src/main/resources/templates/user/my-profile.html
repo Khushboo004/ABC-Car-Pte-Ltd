@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" 
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+th:replace="user/user-base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Show Contacts</title>
+</head>
+<body>
+<section>
+<div  th:if="${user}">
+<div  class="bg-light">
+<div class=" container">
+<div th:if="${session.message}"
+						th:classappend="${session.message.type}" role="alert" class="p-1  mt-3">
+						<p class="text-center" th:text="${session.message.content}"></p>
+						<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+					</div>
+<div class="text-center mt-4">
+      <img class=" text-center rounded-pill border" style="height: 250px; width: 250px" th:src="@{'/image/'+${user.imageUrl}}" alt="Profile Photo Display">
+    </div>
+    <div class="text-center">
+      <a sec:authorize="hasAnyAuthority('USER')" th:href="@{'/user/update-profile/'+${user.id}}" class="btn btn-primary btn-sm mr-2">update</a>
+    </div>
+    
+    
+      <!-- <h3 class="mt-2"><span th:text=${contact.name}></span> 
+      (<span th:text=${contact.secondName}></span>)</h3> -->
+     
+     
+      <table class="table m-2  table-bordered fw-bold" border="1">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col" th:text="${user.name}"></th>
+      </tr>
+ 
+    <tr>
+      <th scope="col">Email</th>
+      <th scope="col" th:text="${user.email}"></th>
+    </tr>
+    <tr>
+      <th scope="col">Phone Number</th>
+      <th scope="col" th:text="${user.phone}"></th>
+    </tr>
+    <tr>
+      <th scope="col">Work</th>
+      <th scope="col" th:text="${user.about}"></th>
+    </tr>
+  </thead>  
+  
+</table>
+
+
+
+     
+ </div>
+  </div>
+ 
+ <h1 sec:authorize="hasAnyAuthority('USER')" class="text-center py-2 mt-2" style="background:rgb(161, 144, 144);">My Cars</h1>
+  <h1 sec:authorize="hasAnyAuthority('ADMIN')" class="text-center py-2 mt-2" style="background:rgb(161, 144, 144);">All Cars</h1>
+ 
+ <div class=" container">
+ <div class="row">
+ <div class="col-12 ">
+					<div class="card" style="margin-top: 20px" th:each="car : ${cars}">
+						<div class="row no-gutters ">
+							<div class="col-sm-5  d-flex justify-content-center ">
+								<img class="" height="200px" width="250px"
+									th:src="@{${'/carImages/' + car.imgShow}}">
+							</div>
+							<div class="col-sm-7 d-flex justify-content-center">
+								<div class="card-body">
+									<h5 class="card-title" th:text="${car.make.mName}"></h5>
+									<h5 class="card-title" th:text="${car.countries.cname}"></h5>
+									<h4>
+										$ <span th:text="${car.price}"></span>
+									</h4>
+									<p th:text="${car.description}">Suresh Dasari is a founder
+										and technical lead developer in tutlane.</p>
+									<a href="#" sec:authorize="hasAnyAuthority('USER')"
+										th:href="@{/user/user-home/viewCar/{id}(id=${car.id})}"
+										class="btn btn-primary">View Product</a>
+										<a href="#" sec:authorize="hasAnyAuthority('ADMIN')"
+										th:href="@{/admin/user-home/viewCar/{id}(id=${car.id})}"
+										class="btn btn-primary">View Product</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+ 
+ </div>
+
+</div>
+</div>
+
+
+<h1 th:unless="${user}" class="bg-danger text-center text-white">You don't have permision to see this contact</h1>
+	<footer  th:replace="footer::footer1"></footer>
+
+</section>
+</body>
+</html>

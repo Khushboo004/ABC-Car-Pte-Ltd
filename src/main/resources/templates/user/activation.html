@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="user/user-base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Show Contacts</title>
+</head>
+<body>
+	<section>
+		<main class="ml-3 mr-5">
+
+			<div class="row">
+				<div class="col-md-6 col-lg-5 offset-md-3 bg-center">
+					<div class="card my-5 shadow text-white">
+						<div class="card">
+							<div class="card-header bg-dark border border-bottom">
+								<div class="text-center">
+									<img class="rounded-pill mt-3" style="width: 20%" alt=""
+										th:src="@{/img/CarLogo.png}">
+								</div>
+								<h1 class="h2  text-center  ">Activation</h1>
+
+
+
+								<div th:if="${session.message}"
+									th:classappend="${session.message.type}" role="alert"
+									class="p-1">
+									<p class="text-center" th:text="${session.message.content}"></p>
+									<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+								</div>
+
+							</div>
+							<div class="card-body bg-dark text-warning  h5">
+
+
+								<form th:object="${car}" th:action="@{/user/car/activation}"
+									enctype="multipart/form-data" method="post"
+									class="mt-2 px-lg-5">
+
+									<input type="hidden" id="id" th:value="${car.id}" name="id" class="form-control">
+									<input type="hidden" id="model" th:value="${car.model}" name="model" class="form-control">
+									<input type="hidden" id="price" th:value="${car.price}" name="price" class="form-control">
+									<input type="hidden" id="mileage" th:value="${car.mileage}" name="mileage" class="form-control">
+									<input type="hidden" id="cc" th:value="${car.cc}" name="cc" class="form-control">
+								<input type="hidden" id="color" th:value="${car.color}" name="color" class="form-control">
+									<input type="hidden" id="regYear" th:value="${car.regYear}" name="regYear" class="form-control">
+									<input type="hidden" id="description" th:value="${car.description}" name="description" class="form-control">
+									<input type="hidden" id="imgShow" th:value="${car.imgShow}" name="imgShow" class="form-control">
+									<input type="hidden" id="img1" th:value="${car.img1}" name="img1" class="form-control">
+									<input type="hidden" id="img2" th:value="${car.img2}" name="img2" class="form-control">
+									<input type="hidden" id="img3" th:value="${car.img3}" name="img3" class="form-control">
+ 
+                           
+                           <!-- MAKER -->
+                <div class="form-group "  hidden="hidden">
+                    <label for="make">Make</label>
+                    <div class=" d-flex"><select class="form-control mr-5 " th:field="*{make}" id="make" name="make">
+                        <option th:each="make :${makers}"
+                                th:value="${make.id}"
+                                th:text="${make.mName}"
+                        >
+                    </select>
+                    <a class="btn btn-primary btn-sm ">Add Maker</a></div>
+                </div>
+                
+             
+                
+                 <!-- YEAR -->
+               
+                     <div class="form-group "  hidden="hidden">
+                    <label for="year">Year</label>
+                    <div class=" d-flex">
+                    <select class="form-control mr-5" th:field="*{year}" id="year" name="year" >
+                        <option th:each="year :${year}"
+                                th:value="${year.id}"
+                                th:text="${year.year}" >
+                    </select>
+                    <a class="btn btn-primary btn-sm">Add Year</a>
+                    </div>
+                </div>
+                
+                <!--  COUNTRIES   -->              
+                     <div class="form-group"  hidden="hidden">
+                    <label for="countriesl">Countries</label>
+                    
+                    <select class="form-control" th:field="*{countries}" id="countries" name="countriesl">
+                        <option th:each="countries :${countries}"
+                                th:value="${countries.id}"
+                                th:text="${countries.cname}" >
+                    </select>
+                    
+               </div>
+                <!-- TYPE -->
+        
+                       <div class="form-group "  hidden="hidden">
+                    <label for="type">Type</label>
+                    <div class=" d-flex"><select class="form-control mr-5 " th:field="*{type}" id="type" name="type">
+                        <option th:each="type :${type}"
+                                th:value="${type.id}"
+                                th:text="${type.tName}"
+                        >
+                    </select>
+                </div>
+                </div>
+                
+                 <!-- FUEL -->
+              
+            
+                <div class="form-group "  hidden="hidden">
+                    <label for="fuel">FUEL</label>
+                    <div class=" d-flex"><select class="form-control mr-5 " th:field="*{fuel}" id="fuel" name="fuel">
+                        <option th:each="fuel :${fuels}"
+                                th:value="${fuel.id}"
+                                th:text="${fuel.fName}"
+                        >
+                    </select>
+                    </div>  </div>
+									
+									<div class="form-group ">
+										<label for="status">status</label>
+										<div class=" d-flex">
+											<select class="form-control mr-5 " th:field="*{status}"
+												id="roles" name="status">
+												<option th:each="role :${status}" th:value="${role.id}"
+													th:text="${role.status}">
+											</select>
+										</div>
+									</div>
+
+
+									<div class="container text-center">
+										<button class="btn btn-primary">Change</button>
+
+									</div>
+
+								</form>
+							</div>
+
+						</div>
+
+
+					</div>
+
+
+				</div>
+
+			</div>
+		</main>
+
+	</section>
+</body>
+</html>

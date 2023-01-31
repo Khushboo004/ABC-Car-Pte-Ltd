@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="user/user-base::layout(~{::section})">
+<section>
+	<div class="container">
+
+
+		<div th:if="${session.message}"
+			th:classappend="${session.message.type}" role="alert">
+			<p class="text-center" th:text="${session.message.content}"></p>
+			<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+		</div>
+
+		<h1 class="text-center">Test Drive Requests</h1>
+
+		<table class="table table-hover table-bordered text-center">
+			<thead class="thead-light fs-6 bg-warning">
+				<tr>
+					<th scope="col">SN</th>
+
+					<th scope="col">Name</th>
+					<th scope="col">Phone</th>
+					<th scope="col">Email</th>
+					<th scope="col">Model</th>
+					<th scope="col">Post Code</th>
+					<th scope="col">Preferred Date</th>
+					<th scope="col">Comments</th>
+					<th scope="col">Action</th>
+					
+
+
+				</tr>
+			</thead>
+			<tbody class="fs-6 fw-bold">
+				<tr th:each="td, iStat : ${testDriven}">
+					<th scope="row" th:text="${iStat.index + 1}">1</th>
+					<td><span th:text="${td.firstName}"></span> 
+					<span th:text="${td.lastName}"></span></td>
+					<td><span th:text="${td.phone}"></span></td>
+					<td th:text="${td.email}"></td>
+					<td th:text="${td.car.model}"></td>
+					<td th:text="${td.postcode}"></td>
+					<td th:text="${td.preferredDate}"></td>
+					<td th:text="${td.comments}"></td>
+					<td>
+					<a  th:href="@{'/user/show-requests/delete/'+${td.id}}" onclick="return confirm('Are You sure?')" class="btn btn-danger btn-sm mr-2">Delete</a>
+					</td>
+					
+				</tr>
+			</tbody>
+		</table>
+
+		<div></div>
+
+
+
+
+	</div>
+	<script type="text/javascript">
+
+
+</script>
+</section>
+</body>
+</html>
