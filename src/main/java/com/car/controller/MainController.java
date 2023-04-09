@@ -71,6 +71,7 @@ public class MainController {
 			user.addRole(roleUser);
 			user.setEnable(true);
 			user.setImageUrl("default.png");
+			                                    
 			
 			
 			this.userService.save(user);
